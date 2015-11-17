@@ -1,0 +1,7 @@
+0.1 Tag
+	Imported original RiOT source
+	Added autotools based configure system
+	Allowed for installing the Taylor arithmetic separately of the ODE
+	solver component
+	Fixed in matinv.cpp with newer GCC
+	
