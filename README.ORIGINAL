@@ -1,0 +1,119 @@
+Beschreibung
+============
+
+RiOT ist ein freies C++ Programm zur Loesungseinschliessung 
+bei gewoehnlichen (Intervall-)Anfangswertproblemen. RiOT basiert 
+auf den Taylor-Modellen von Martin Berz und Kyoko Makino.
+
+Das Paket besteht aus den zwei Unterverzeichnissen 'tm-base' und 
+'dgl'. In 'tm-base' befindet sich eine Implementierung der 
+Taylor-Modelle, in 'dgl' eine Implementierung des an 
+einigen Stellen modifizierten Einschliessungsverfahrens 
+von Martin Berz und Kyoko Makino.
+
+
+Installation
+============
+
+1) Benoetigt werden 
+
+	a) der GNU C++ compiler gcc 3.3.5 (oder hoeher)
+
+	b) die C-XSC Intervall-Bibliothek (version 2.0 oder hoeher)
+
+	   ODER
+
+           die filib++ Intervall-Bibliothek (version vom 03. Juli 2008 oder hoeher).
+
+   Empfohlen wird die Verwendung der filib++ Bibliothek (kuerzere Rechenzeiten). 
+
+   (Die C-XSC Bibliothek ist erhaeltlich unter
+
+        http://www.xsc.de
+
+    und die filib++ Bibliothek kann von folgender Adresse bezogen werden
+
+        http://www.math.uni-wuppertal.de/wrswt/software/filib.html
+
+    Die Installation der entsprechenden Intervall-Bibliothek kann den jeweils beigefuegten
+    README Dateien entnommen werden.)
+
+2) Entpacke die Quellen mit dem Kommando
+
+       "tar -xvzf RiOT.tgz".
+
+   Ein Verzeichnis mit dem Namen 'RiOT' wird erstellt, in dem sich alle benoetigten
+   Quellen befinden.
+
+3) Man wechsle in das Verzeichnis 'dgl' und modifiziere im Makefile
+   den Pfad zur Intervall-Bibliothek. Mit dem Kommando
+   
+       "make solve-cxsc"
+
+   oder
+
+       "make solve-filib",
+
+   je nach Intervall-Bibliothek, wird dann in 'tm-base' die 
+   Taylor-Modell Bibliothek und anschliessend in 'dgl' das 
+   Programm erzeugt.
+
+6) Die ausfuehrbare Datei heisst 'solve' und mit dem Kommando
+
+       "./solve"
+
+   wird der Einschliessungsalgorithmus gestartet.
+
+
+Ein- und Ausgabe
+================
+
+Das zu loesende Intervall-Anfangswertproblem wird in der Datei
+
+'dgl/data.cpp'
+
+definiert. Dort wird dem zu loesenden Problem ein Titel gegeben,
+der als Prefix fuer die Benennung der Ausgabedateien dient.
+
+Zu den Ausgabedateien: die Dateien haben den in 'data.cpp' angegebenen
+'Title' als Prefix im Namen, an den Nummern angehaengt werden ('Title_xx.txt').
+		
+  xx = 00:Hier sind die wichtigsten Laufzeitdaten des
+	  DGL-Algorithmus enthalten.
+		
+  xx = 01:Laufzeitdaten zum Shrink-Wrapping. War der erste
+	  Versuch erfolgreich, ist also '1# failed = no', dann ist die
+	  Angabe bei 'Encl.' nicht relevant. Schlug der erste Versuch
+	  allerdings fehl, dann gibt 'q' den Shrink-Faktor fuer das
+	  Parallelepiped der Parallelepiped-Einschliessung wieder. 
+          Ausser q hat einen Wert identisch 1.0. In diesem Fall 
+          wurde keine Einschliessung vorgenommen.
+	  Die Werte fuer 's' und 't' stammen aus dem ersten Versuch
+	  und sind im Falle einer Box- bzw. Parallelepiped-
+	  Einschliessung nichtssagend.
+
+  xx = 02:Enthaelt Informationen ueber den linearen Anteil des
+	  Taylor-Modells: Schritt, Konditionszahl der Matrix, Flaeche des
+	  Parallelepipeds und die Flaeche der Boxeinschliessung.
+	
+  xx = 03:Intervalleinschliessung der Loesung an jedem
+	  Gitterpunkt. Wird fuer das plotten mit Gnuplot verwendet.
+          Die mit einem '*' gekennzeichneten Zeilen enthalten die 
+          Intervalleinschliessungen an den in 'data.cpp' angegebenen Stellen.
+
+  xx = 04:Enthaelt die Taylor-Modelle an den in 'data.cpp'
+	  angegeben Gitterpunkten.
+
+Die errechneten Daten koennen mit dem beigefuegten Skript 
+'solution_plot' mit gnuplot veranschaulicht werden.
+
+Support
+=======
+
+Support gibt es keinen. RiOT ist freie Software. Fuer Korrekturen,
+Hinweise und Verbesserungen jeglicher Art bin ich allerdings dankbar.
+
+Kontakt: ingoeble@web.de
+
+		
+	
